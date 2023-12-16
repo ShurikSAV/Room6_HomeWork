@@ -5,6 +5,8 @@ namespace GuessTheNumberConsole.InterfaceUI;
 //Принцип открытости/закрытости
 internal class ConsoleUI_Eng : ConsoleUI
 {
+    virtual public string Name => "New ConsoleUI_Eng";
+
     override public void ShowCaption(IInterfaceUI.EnumMessageType messageType)
     {
         switch (messageType)

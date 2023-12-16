@@ -11,6 +11,8 @@ internal class GameGuessNumber : IGame
     private readonly IGameSettings _settings;
     private readonly IGenegator _gen;
 
+    //Принцип инверсии зависимостей
+
     public GameGuessNumber(IGameSettings settings, IInterfaceUI ui, IGenegator gen)
     {
         _ui = ui;

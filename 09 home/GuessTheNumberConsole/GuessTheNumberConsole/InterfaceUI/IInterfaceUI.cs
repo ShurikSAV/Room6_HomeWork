@@ -1,6 +1,7 @@
 ﻿namespace GuessTheNumberConsole.InterfaceUI;
 
 //Принцип единственной ответственности
+//Принцип разделения интерфейса
 
 /// <summary>
 /// Интерфейс приложения

@@ -20,10 +20,9 @@ using System.ComponentModel;
 
  */
 
+
 //IInterfaceUI ui = new ConsoleUI();
-IInterfaceUI ui = new ConsoleUI_Eng();
-
-
+IInterfaceUI ui = new ConsoleUI_Eng(); //Принцип подстановки Барбары Лисков
 
 IGame game = new GameGuessNumber(
     new GameSettings() { 
