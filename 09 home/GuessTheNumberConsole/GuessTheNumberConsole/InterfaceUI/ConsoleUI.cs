@@ -35,6 +35,10 @@ internal class ConsoleUI : IInterfaceUI
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Информация:");
                 break;
+            case IInterfaceUI.EnumMessageType.Question:
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Вопрос:");
+                break;
         }
     }
 
@@ -44,16 +48,23 @@ internal class ConsoleUI : IInterfaceUI
 
         ShowText(text);
 
-        if (button is IInterfaceUI.EnumMessageButton.None) return IInterfaceUI.EnumMessageButton.None;
+        return ShowButton(button);
+    }
 
+    private IInterfaceUI.EnumMessageButton ShowButton(IInterfaceUI.EnumMessageButton button)
+    {
+        
+        if (isFlag(button, IInterfaceUI.EnumMessageButton.None)) 
+            return IInterfaceUI.EnumMessageButton.None;
+        
         ShowText("Выберите один из вариантов: ", ConsoleColor.DarkBlue);
 
-        StringBuilder buttons = new StringBuilder();
-        
-        if (button is IInterfaceUI.EnumMessageButton.Close) buttons.Append("| Закрыть [З] ");
-        if (button is IInterfaceUI.EnumMessageButton.Cancel) buttons.Append("| Отменить [О] ");
-        if (button is IInterfaceUI.EnumMessageButton.No) buttons.Append("| Нет [Н] ");
-        if (button is IInterfaceUI.EnumMessageButton.Yes) buttons.Append("| Да [Д] ");
+        var buttons = new StringBuilder();
+
+        if (isFlag(button, IInterfaceUI.EnumMessageButton.Close)) buttons.Append("| Закрыть [З] ");
+        if (isFlag(button, IInterfaceUI.EnumMessageButton.Cancel)) buttons.Append("| Отменить [О] ");
+        if (isFlag(button, IInterfaceUI.EnumMessageButton.No)) buttons.Append("| Нет [Н] ");
+        if (isFlag(button, IInterfaceUI.EnumMessageButton.Yes)) buttons.Append("| Да [Д] ");
 
         ShowText(buttons.ToString(), ConsoleColor.DarkBlue);
 
@@ -70,6 +81,9 @@ internal class ConsoleUI : IInterfaceUI
         };
     }
 
+    private bool isFlag(IInterfaceUI.EnumMessageButton button, IInterfaceUI.EnumMessageButton close)
+        => (button & close) == close;
+
     public void ShowText(string text, ConsoleColor colorText)
     {
         Console.ForegroundColor = colorText;
@@ -80,4 +94,7 @@ internal class ConsoleUI : IInterfaceUI
     {
         ShowText(text, ConsoleColor.Gray);
     }
+
+    public string? GetString()
+        => Console.ReadLine();
 }

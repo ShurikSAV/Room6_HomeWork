@@ -20,15 +20,19 @@ internal interface IInterfaceUI
         /// Ошибка
         /// </summary>
         Error,
+        /// <summary>
+        /// Вопрос
+        /// </summary>
+        Question,
     }
     [Flags]
     public enum EnumMessageButton
     {
         None = 0,  // 0
-        Yes = 1,
-        No = Yes >> 1,
-        Cancel = No >> 1,
-        Close = Cancel >> 1,
+        Yes = 0b1,
+        No = Yes << 1,
+        Cancel = No << 1,
+        Close = Cancel << 1,
     }
 
     /// <summary>
@@ -38,6 +42,14 @@ internal interface IInterfaceUI
     /// <param name="messageType"></param>
     /// <param name="button"></param>
     EnumMessageButton ShowMessage(string text, EnumMessageType messageType = EnumMessageType.Info, EnumMessageButton button = EnumMessageButton.None);
-
+    /// <summary>
+    /// Вывести текст
+    /// </summary>
+    /// <param name="text"></param>
     void ShowText(string text);
+    /// <summary>
+    /// Пользовательский ввод
+    /// </summary>
+    /// <returns></returns>
+    string? GetString();
 }

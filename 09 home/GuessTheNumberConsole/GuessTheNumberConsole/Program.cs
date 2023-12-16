@@ -1,5 +1,8 @@
 ﻿using GuessTheNumberConsole.Game;
+using GuessTheNumberConsole.GameSettings;
+using GuessTheNumberConsole.Genegator;
 using GuessTheNumberConsole.InterfaceUI;
+using System.ComponentModel;
 
 
 /*
@@ -19,8 +22,16 @@ using GuessTheNumberConsole.InterfaceUI;
 
 IInterfaceUI ui = new ConsoleUI();
 
+
+
 IGame game = new GameGuessNumber(
-    ui
+    new GameSettings() { 
+        AttemptsNumber = 10,
+        ResultMin = 0,
+        ResultMax = 50,
+    },
+    ui,
+    new Genegator()
     );
 
 ui.ShowMessage(
