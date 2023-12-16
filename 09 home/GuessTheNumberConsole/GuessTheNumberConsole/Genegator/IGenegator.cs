@@ -1,5 +1,7 @@
 ﻿namespace GuessTheNumberConsole.Genegator;
 
+//Принцип единственной ответственности
+
 internal interface IGenegator
 {
     /// <summary>
