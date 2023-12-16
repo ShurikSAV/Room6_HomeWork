@@ -1,2 +1,6 @@
-# Room6_HomeWork
-C# Developer. Professional
+# C# Developer. Professional
+
+Домашние работы для курса 
+
+Период обучения 
+31 октября — 11 июня 2024 года
