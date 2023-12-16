@@ -2,6 +2,8 @@
 
 namespace GuessTheNumberConsole.InterfaceUI;
 
+//Принцип открытости/закрытости
+
 internal class ConsoleUI : IInterfaceUI
 {
     /// <summary>
