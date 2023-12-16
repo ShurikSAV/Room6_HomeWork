@@ -1,23 +1,14 @@
-﻿
-
-using System.Text;
-
+﻿using System.Text;
 
 namespace GuessTheNumberConsole.InterfaceUI;
 
 internal class ConsoleUI : IInterfaceUI
 {
-    public void ShowCaption1(string caption)
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("Игра \"Угадай число\"\n\n");
-    }
-
     /// <summary>
     /// Вывести заголовок сообщения
     /// </summary>
     /// <param name="messageType"></param>
-    private void ShowCaption(IInterfaceUI.EnumMessageType messageType) 
+    virtual public void ShowCaption(IInterfaceUI.EnumMessageType messageType) 
     {
         switch (messageType)
         {
@@ -42,7 +33,7 @@ internal class ConsoleUI : IInterfaceUI
         }
     }
 
-    public IInterfaceUI.EnumMessageButton ShowMessage(string text, IInterfaceUI.EnumMessageType messageType = IInterfaceUI.EnumMessageType.Info, IInterfaceUI.EnumMessageButton button = IInterfaceUI.EnumMessageButton.Cancel)
+    virtual public IInterfaceUI.EnumMessageButton ShowMessage(string text, IInterfaceUI.EnumMessageType messageType = IInterfaceUI.EnumMessageType.Info, IInterfaceUI.EnumMessageButton button = IInterfaceUI.EnumMessageButton.Cancel)
     {
         ShowCaption(messageType);
 
@@ -51,7 +42,7 @@ internal class ConsoleUI : IInterfaceUI
         return ShowButton(button);
     }
 
-    private IInterfaceUI.EnumMessageButton ShowButton(IInterfaceUI.EnumMessageButton button)
+    virtual public IInterfaceUI.EnumMessageButton ShowButton(IInterfaceUI.EnumMessageButton button)
     {
         
         if (isFlag(button, IInterfaceUI.EnumMessageButton.None)) 
@@ -81,20 +72,20 @@ internal class ConsoleUI : IInterfaceUI
         };
     }
 
-    private bool isFlag(IInterfaceUI.EnumMessageButton button, IInterfaceUI.EnumMessageButton close)
+    virtual public bool isFlag(IInterfaceUI.EnumMessageButton button, IInterfaceUI.EnumMessageButton close)
         => (button & close) == close;
 
-    public void ShowText(string text, ConsoleColor colorText)
+    virtual public void ShowText(string text, ConsoleColor colorText)
     {
         Console.ForegroundColor = colorText;
         Console.WriteLine($"\t{text}");
     }
 
-    public void ShowText(string text)
+    virtual public void ShowText(string text)
     {
         ShowText(text, ConsoleColor.Gray);
     }
 
-    public string? GetString()
+    virtual public string? GetString()
         => Console.ReadLine();
 }
