@@ -3,62 +3,62 @@
 namespace GuessTheNumberConsole.InterfaceUI;
 
 //Принцип открытости/закрытости
-internal class ConsoleUI_Eng : ConsoleUI
+internal sealed class ConsoleUiEng : ConsoleUi
 {
-    virtual public string Name => "New ConsoleUI_Eng";
-
-    override public void ShowCaption(IInterfaceUI.EnumMessageType messageType)
+    protected override void ShowCaption(IInterfaceUi.EnumMessageType messageType)
     {
         switch (messageType)
         {
-            case IInterfaceUI.EnumMessageType.None:
+            case IInterfaceUi.EnumMessageType.None:
                 break;
-            case IInterfaceUI.EnumMessageType.Warning:
+            case IInterfaceUi.EnumMessageType.Warning:
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Warning:");
                 break;
-            case IInterfaceUI.EnumMessageType.Error:
+            case IInterfaceUi.EnumMessageType.Error:
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Question:");
                 break;
-            case IInterfaceUI.EnumMessageType.Info:
+            case IInterfaceUi.EnumMessageType.Info:
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Information:");
                 break;
-            case IInterfaceUI.EnumMessageType.Question:
+            case IInterfaceUi.EnumMessageType.Question:
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Question:");
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(messageType), messageType, null);
         }
     }
 
-    override public IInterfaceUI.EnumMessageButton ShowButton(IInterfaceUI.EnumMessageButton button)
+    protected override IInterfaceUi.EnumMessageButton ShowButton(IInterfaceUi.EnumMessageButton button)
     {
 
-        if (isFlag(button, IInterfaceUI.EnumMessageButton.None))
-            return IInterfaceUI.EnumMessageButton.None;
+        if (IsFlag(button, IInterfaceUi.EnumMessageButton.None))
+            return IInterfaceUi.EnumMessageButton.None;
 
         ShowText("Choose one of the options: ", ConsoleColor.DarkBlue);
 
         var buttons = new StringBuilder();
 
-        if (isFlag(button, IInterfaceUI.EnumMessageButton.Close)) buttons.Append("| Exit [E] ");
-        if (isFlag(button, IInterfaceUI.EnumMessageButton.Cancel)) buttons.Append("| Cancel [C] ");
-        if (isFlag(button, IInterfaceUI.EnumMessageButton.No)) buttons.Append("| No [N] ");
-        if (isFlag(button, IInterfaceUI.EnumMessageButton.Yes)) buttons.Append("| Yes [Y] ");
+        if (IsFlag(button, IInterfaceUi.EnumMessageButton.Close)) buttons.Append("| Exit [E] ");
+        if (IsFlag(button, IInterfaceUi.EnumMessageButton.Cancel)) buttons.Append("| Cancel [C] ");
+        if (IsFlag(button, IInterfaceUi.EnumMessageButton.No)) buttons.Append("| No [N] ");
+        if (IsFlag(button, IInterfaceUi.EnumMessageButton.Yes)) buttons.Append("| Yes [Y] ");
 
         ShowText(buttons.ToString(), ConsoleColor.DarkBlue);
 
         var key = Console.ReadKey().ToString();
-        if (string.IsNullOrEmpty(key)) return IInterfaceUI.EnumMessageButton.None;
+        if (string.IsNullOrEmpty(key)) return IInterfaceUi.EnumMessageButton.None;
 
         return key.ToUpper() switch
         {
-            "E" => IInterfaceUI.EnumMessageButton.Close,
-            "C" => IInterfaceUI.EnumMessageButton.Cancel,
-            "N" => IInterfaceUI.EnumMessageButton.No,
-            "Y" => IInterfaceUI.EnumMessageButton.Yes,
-            _ => IInterfaceUI.EnumMessageButton.None,
+            "E" => IInterfaceUi.EnumMessageButton.Close,
+            "C" => IInterfaceUi.EnumMessageButton.Cancel,
+            "N" => IInterfaceUi.EnumMessageButton.No,
+            "Y" => IInterfaceUi.EnumMessageButton.Yes,
+            _ => IInterfaceUi.EnumMessageButton.None,
         };
     }
 }

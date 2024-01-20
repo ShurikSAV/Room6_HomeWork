@@ -6,7 +6,7 @@
 /// <summary>
 /// Интерфейс приложения
 /// </summary>
-internal interface IInterfaceUI
+internal interface IInterfaceUi
 {
     public enum EnumMessageType 
     { 

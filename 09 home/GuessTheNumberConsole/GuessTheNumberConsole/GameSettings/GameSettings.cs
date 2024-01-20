@@ -2,9 +2,9 @@
 
 internal class GameSettings : IGameSettings
 {
-    public int AttemptsNumber { get; set; }
+    public int AttemptsNumber { get; init; }
 
-    public int ResultMax { get; set; }
+    public int ResultMax { get; init; }
 
-    public int ResultMin { get; set; }
+    public int ResultMin { get; init; }
 }

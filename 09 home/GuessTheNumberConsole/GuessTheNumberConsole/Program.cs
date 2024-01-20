@@ -2,8 +2,6 @@
 using GuessTheNumberConsole.GameSettings;
 using GuessTheNumberConsole.Genegator;
 using GuessTheNumberConsole.InterfaceUI;
-using System.ComponentModel;
-
 
 /*
  На примере реализации игры «Угадай число» продемонстрировать практическое применение SOLID принципов.
@@ -11,18 +9,14 @@ using System.ComponentModel;
 В отчёте написать, что именно сделано по каждому принципу.
 Приложить ссылку на проект и написать, сколько времени ушло на выполнение задачи.
  */
-
 /*
  //NOTE: SRP  Принцип единственной ответственности
     IInterfaceUI    Отвечает за взаимодействие с пользователем
     IGame           Отвечает за жизненный цикл игры   
-
-
  */
 
-
 //IInterfaceUI ui = new ConsoleUI();
-IInterfaceUI ui = new ConsoleUI_Eng(); //Принцип подстановки Барбары Лисков
+IInterfaceUi ui = new ConsoleUiEng(); //Принцип подстановки Барбары Лисков
 
 IGame game = new GameGuessNumber(
     new GameSettings() { 
@@ -39,4 +33,4 @@ ui.ShowMessage(
 
 game.Start();
 
-ui.ShowMessage("Игра закончена\nНажмите любую клавишу для выхода",IInterfaceUI.EnumMessageType.Info, IInterfaceUI.EnumMessageButton.Close);
+ui.ShowMessage("Игра закончена\nНажмите любую клавишу для выхода",IInterfaceUi.EnumMessageType.Info, IInterfaceUi.EnumMessageButton.Close);
